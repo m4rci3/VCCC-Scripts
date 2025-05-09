@@ -7,7 +7,7 @@ cat << "EOF"
 /_/    \__,_/_/   \__/   /_/  /____/\___/_/  /_/ .___/\__/
                                               /_/
 EOF 
-#!/bin/bash
+
 # Redirect output to log file
 exec > >(tee -a script.log) 2>&1
 
@@ -49,7 +49,12 @@ sudo systemctl status mariadb
 # Run secure installation 
 echo "Run the following command manually to secure MariaDB:"
 echo "sudo mysql_secure_installation"
-echo "After completing that , run ./02_create_wp_db.sh" 
+echo "After which you need to run the next command if "
+echo "You are hosting your website on a seperate machine from your databate"
+echo "or you want another or multple hosts to connect to the database" 
+echo "sudo nano /etc/my.cnf.d/mariadb-server.cnf "
+echo "bind address = 0.0.0.0" 
+echo "After completing that, run ./02_create_wp_db.sh" 
 exit 0
 
 

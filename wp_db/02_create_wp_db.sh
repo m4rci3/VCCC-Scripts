@@ -6,9 +6,8 @@ cat << "EOF"
  / ____/ /_/ / /  / /_    / __/   (__  ) /__/ /  / / /_/ / /_
 /_/    \__,_/_/   \__/   /____/  /____/\___/_/  /_/ .___/\__/
                                                  /_/
-
 EOF
-#!/bin/bash
+
 set -e
 exec > >(tee -a 02_db_setup.log) 2>&1
 
@@ -20,7 +19,6 @@ echo
 read -p "Enter name for new WordPress database: " wp_db
 read -p "Enter username for WordPress database user: " wp_user
 read -s -p "Enter password for WordPress database user: " wp_pass
-echo
 
 # Create DB and user
 mysql -u root -p"$dbrootpass" <<EOF

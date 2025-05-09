@@ -6,9 +6,8 @@ cat << "EOF"
  / ____/ /_/ / /  / /_    ___/ /  (__  ) /__/ /  / / /_/ / /_
 /_/    \__,_/_/   \__/   /____/  /____/\___/_/  /_/ .___/\__/
                                                  /_/
-
 EOF
-#!/bin/bash
+
 set -e
 exec > >(tee -a 03_php_wp.log) 2>&1
 
@@ -26,7 +25,7 @@ php -v
 echo "== Downloading WordPress =="
 wget https://wordpress.org/latest.tar.gz
 tar -xzf latest.tar.gz
-sudo cp -r wordpress/* /var/www/html/
+sudo cp -r wordpress /var/www/html/
 sudo chown -R apache:apache /var/www/html
 sudo chmod -R 750 /var/www/html
 
