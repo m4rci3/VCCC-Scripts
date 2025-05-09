@@ -49,8 +49,6 @@ sudo systemctl status mariadb
 # Run secure installation 
 echo "Run the following command manually to secure MariaDB:"
 echo "sudo mysql_secure_installation"
-echo "Login to MariaDB with: sudo mysql -u root -p"
-echo "Configure a wordpress admin and a wordpress db" 
 echo "After completing that , run ./02_create_wp_db.sh" 
 exit 0
 
