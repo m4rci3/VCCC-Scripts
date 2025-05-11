@@ -1,20 +1,21 @@
 #!/bin/bash
-cat << "EOF"
-                        __     __ __                    _       __ 
-    ____  ____ ______/ /_   / // /    _______________(_)___  / /_
-   / __ \/ __ `/ ___/ __/  / // /_   / ___/ ___/ ___/ / __ \/ __/
-  / /_/ / /_/ / /  / /_   /__  __/  (__  ) /__/ /  / / /_/ / /_  
- / .___/\__,_/_/   \__/     /_/    /____/\___/_/  /_/ .___/\__/  
-/_/                                                /_/           
+cat <<EOF
+           ____             __     __ __     _____           _       __
+          / __ \____ ______/ /_   / // /    / ___/__________(_)___  / /_
+         / /_/ / __  / ___/ __/  / // /_    \__ \/ ___/ ___/ / __ \/ __/
+        / ____/ /_/ / /  / /_   /__  __/   ___/ / /__/ /  / / /_/ / /_
+       /_/    \__,_/_/   \__/     /_/     /____/\___/_/  /_/ .___/\__/
+                                                          /_/
 EOF
 
 set -e
 exec > >(tee -a 04_ssl.log) 2>&1
-echo "== Installing mod_ssl =="
+echo "=== Installing mod_ssl ==="
 sudo dnf install mod_ssl -y
 sudo mkdir -p /etc/httpd/ssl
+echo 
 
-echo "== SSL Certificate Configuration =="
+echo "=== SSL Certificate Configuration ==="
 
 #prompt for SSL cert details 
 read -p "Country code (e.g., US): " country
@@ -26,20 +27,24 @@ read -p "Common Name (e.g., example.com): " cn
 
 subject="/C=$country/ST=$state/L=$city/O=$org/CN=$cn"
 
-echo "== Creating self-signed certificate =="
+echo "=== Creating self-signed certificate ==="
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 \
   -keyout /etc/httpd/ssl/wordpress.key \
   -out /etc/httpd/ssl/wordpress.crt \
   -subj "$subject"
+echo
 
+echo "=== Securing SSL keys to only allow Root user access ==="
 sudo chmod 600 /etc/httpd/ssl
 sudo systemctl restart httpd
 echo
-echo "SSL configuration complete"
-echo "Cert created for $cn"
-echo "Apache service restarted" 
+echo "=== SSL configuration complete ==="
 echo
-cat << "EOF"
+echo "=== Cert created for $cn ==="
+echo
+echo "=== Apache service restarted ====" 
+echo
+cat <<EOF
 Next you would want to add something like the following inside of your /etc/httpd/conf.d/wordpress.conf :
 --------------------------------------------------
 <VirtualHost *:80>
@@ -75,3 +80,4 @@ define('WP_HOME', 'https://vegapunk.strawhats.local');
 define('WP_SITEURL', 'https://vegapunk.strawhats.local');
 
 EOF
+

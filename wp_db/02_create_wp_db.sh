@@ -1,11 +1,11 @@
 #!/bin/bash
-cat << "EOF"
-    ____             __     ___                     _       __
-   / __ \____ ______/ /_   |__ \    _______________(_)___  / /_
-  / /_/ / __ `/ ___/ __/   __/ /   / ___/ ___/ ___/ / __ \/ __/
- / ____/ /_/ / /  / /_    / __/   (__  ) /__/ /  / / /_/ / /_
-/_/    \__,_/_/   \__/   /____/  /____/\___/_/  /_/ .___/\__/
-                                                 /_/
+cat <<EOF
+            ____             __     ___      _____           _       __
+           / __ \____ ______/ /_   |__ \    / ___/__________(_)___  / /_
+          / /_/ / __  / ___/ __/   __/ /    \__ \/ ___/ ___/ / __ \/ __/
+         / ____/ /_/ / /  / /_    / __/    ___/ / /__/ /  / / /_/ / /_
+        /_/    \__,_/_/   \__/   /____/   /____/\___/_/  /_/ .___/\__/
+                                                          /_/
 EOF
 
 set -e
@@ -17,8 +17,8 @@ echo
 
 # Prompt for new WordPress DB, user, and password
 read -p "Enter name for new WordPress database: " wp_db
-read -p "Enter username for WordPress database user: " wp_user
-read -s -p "Enter password for WordPress database user: " wp_pass
+read -p "Enter username for new WordPress database user: " wp_user
+read -s -p "Enter password for new WordPress database user: " wp_pass
 
 # Create DB and user
 mysql -u root -p"$dbrootpass" <<EOF
@@ -33,3 +33,4 @@ echo "Created database:      $wp_db"
 echo "Created user:          $wp_user"
 echo "Password (hidden):     [REDACTED]"
 echo "Database setup complete. Now run ./03_setup_php_wordpress.sh"
+
