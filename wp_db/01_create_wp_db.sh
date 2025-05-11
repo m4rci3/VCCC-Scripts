@@ -14,37 +14,37 @@ exec > >(tee -a script.log) 2>&1
 # Exit on error
 set -e
 
-echo "===Running package update and upgrade==="
+echo "=== Running package update and upgrade ==="
 sudo dnf update -y
 sudo dnf upgrade -y
 
 echo
-echo "===Installing and enabling Apache==="
+echo "=== Installing and enabling Apache ==="
 sudo dnf install -y httpd
 sudo systemctl start httpd.service
 sudo systemctl enable httpd.service
 sudo systemctl status httpd.service
 echo
 
-echo "===Let's set the hostname of this device==="
+echo "=== Let's set the hostname of this device ==="
 read -p "Enter the desired hostname: " hostname
 sudo hostnamectl set-hostname "$hostname"
-echo "===Your hostname is now $hostname. Open a new terminal to see the change.==="
+echo "=== Your hostname is now $hostname. Open a new terminal to see the change. ==="
 echo
 # Confirm Apache is listening on port 80
-echo "===Let's confirm Apache is running properly on port 80==="
+echo "=== Let's confirm Apache is running properly on port 80 ==="
 sudo ss -tulpn | grep :80
-echo "===There should be an output of *:80==="
+echo "=== There should be an output of *:80 ==="
 echo
 # Configure firewall
-echo "===Adding HTTP & HTTPS to firewall rules for the public zone==="
+echo "=== Adding HTTP & HTTPS to firewall rules for the public zone ==="
 sudo firewall-cmd --permanent --add-service=http --zone=public
 sudo firewall-cmd --permanent --add-service=https --zone=public
 sudo firewall-cmd --reload
 sudo firewall-cmd --list-services --zone=public
 
 # Install MariaDB
-echo "===Installing Mariadb==="
+echo "=== Installing Mariadb ==="
 sudo yum install -y mariadb-server
 sudo systemctl start mariadb
 sudo systemctl enable mariadb
@@ -52,7 +52,7 @@ sudo systemctl status mariadb
 
 # Run secure installation
 echo
-echo "===Run the following command manually to secure MariaDB==="
+echo "=== Run the following command manually to secure MariaDB ==="
 echo "sudo mysql_secure_installation"
 echo
 echo "After which you need to run the next command if you are hosting your website on a seperate machine from your databate"
