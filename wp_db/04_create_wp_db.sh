@@ -79,5 +79,12 @@ sudo nano /var/www/html/wordpress/wp-config.php
 define('WP_HOME', 'https://vegapunk.strawhats.local');
 define('WP_SITEURL', 'https://vegapunk.strawhats.local');
 
+#Define database details in the same config file (wp-config.php)
+#The DatabaseName , DatabaseUser, DatabasePassword, and DatabaseHost
+
+#At a certain point you will also get to the security keys portion
+#here there's a link to a website where you get randsom salts and keys 
+#that you use to substitute the defaults inside of the config file 
+#"makes your site harder to succesfully attack by adding random elements to the password"
 EOF
 
