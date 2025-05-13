@@ -37,7 +37,8 @@ sudo ss -tulpn | grep :80
 echo "=== There should be an output of *:80 ==="
 echo
 # Configure firewall
-echo "=== Adding HTTP & HTTPS to firewall rules for the public zone ==="
+echo "=== Adding HTTP & HTTPS to firewall rules and changing default zone to public ==="
+udo firewall-cmd --set-default-zone=public
 sudo firewall-cmd --permanent --add-service=http --zone=public
 sudo firewall-cmd --permanent --add-service=https --zone=public
 sudo firewall-cmd --reload
