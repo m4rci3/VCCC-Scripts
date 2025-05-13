@@ -34,7 +34,3 @@ sudo chmod -R 750 /var/www/html
 echo "=== WordPress files are in place at /var/www/html. Run ./04_configure_ssl.sh to secure your site. ==="
 echo
 php -v 
-echo
-echo "=== To make sure (if needed) that you have the latest version of php run: ===" 
-echo "sudo dnf module list php"
-
