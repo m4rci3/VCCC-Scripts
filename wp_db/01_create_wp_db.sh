@@ -38,7 +38,9 @@ echo "=== There should be an output of *:80 ==="
 echo
 # Configure firewall
 echo "=== Adding HTTP & HTTPS to firewall rules and changing default zone to public ==="
-udo firewall-cmd --set-default-zone=public
+sudo systemctl start firewalld
+sudo systemctl enable firewalld
+sudo firewall-cmd --set-default-zone=public
 sudo firewall-cmd --permanent --add-service=http --zone=public
 sudo firewall-cmd --permanent --add-service=https --zone=public
 sudo firewall-cmd --reload
