@@ -1,7 +1,7 @@
 ## Script Descriptions
 These are scripts I made for NCyTE's VCCC. 
 
-wp_db contains a 4 part script used to build and configure a WordPress `LAMP` stack (Linux, Apache, MariaDB, and PHP), these scripts are made for RPM-based distros like RHEL, Rocky, Alma,CentOS 
+wp_db contains a 4 part script used to build and configure a WordPress `LAMP` stack (Linux, Apache, MariaDB, and PHP), these scripts are made for RPM-based distros like RHEL, Rocky, Alma, and CentOS 
 
 ```mermaid
 flowchart LR;
